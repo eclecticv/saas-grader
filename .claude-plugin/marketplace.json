@@ -1,0 +1,25 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "andorlabs",
+  "metadata": {
+    "description": "And/or Labs - AI x GTM tools for B2B startups"
+  },
+  "owner": {
+    "name": "And/or Labs",
+    "email": "hello@andorlabs.com"
+  },
+  "plugins": [
+    {
+      "name": "saas-grader",
+      "description": "Score SaaS websites against 47 research-backed optimization rules from peer-reviewed marketing science, plus 21 search discoverability checks with competitive landscape analysis and content pillar recommendations.",
+      "version": "1.0.0",
+      "author": {
+        "name": "And/or Labs"
+      },
+      "source": "./",
+      "category": "marketing",
+      "tags": ["saas", "marketing", "optimization", "homepage", "pricing", "seo", "competitive-analysis", "content-strategy"],
+      "homepage": "https://github.com/eclecticv/saas-grader"
+    }
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "name": "saas-grader",
+  "version": "1.0.0",
+  "description": "Score SaaS websites against 47 research-backed optimization rules and 21 search discoverability checks with competitive landscape analysis. Commands: grade, search, wins, export.",
+  "author": {
+    "name": "And/or Labs"
+  }
+}
