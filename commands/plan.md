@@ -1,3 +1,9 @@
+---
+description: Generate a prioritized fix strategy (critical/medium/low) from a 47-rule SaaS audit
+argument-hint: <website-url>
+allowed-tools: Read, Bash, WebFetch
+---
+
 # Command: plan
 
 Run the 47-rule SaaS optimization analysis, then generate a prioritized fix strategy on screen.
@@ -9,9 +15,9 @@ Run the 47-rule SaaS optimization analysis, then generate a prioritized fix stra
 
 ## What It Does
 
-1. **Run the full audit internally** — follow all steps from the `audit` command (crawl homepage + pricing page, screenshot both, read all 4 saas-grader reference files, score all 47 rules)
-2. **Classify every FAIL into priority tiers** based on the criteria below
-3. **Generate a prioritized fix strategy** with actionable recommendations
+1. **Follow the crawl & screenshot procedure** in `skills/saas-grader/reference/shared-procedures.md`
+2. **Apply the scoring rules and grading scale** from the same shared procedures file
+3. **Classify every FAIL into priority tiers** based on the criteria below
 4. **Print the strategy on screen**
 
 ## Priority Classification
@@ -43,8 +49,6 @@ Items that are less visible, harder to observe, or have smaller effect sizes:
 ## Output
 
 **Print results directly on screen (do NOT write to a file).**
-
-Display the following format in the terminal:
 
 ```
 FIX STRATEGY: [Company Name]
@@ -99,10 +103,4 @@ Run /saas-grader:export for the full 47-rule detailed report
 8. **Number the items** within each tier for easy reference
 9. **If a tier has no FAILs, omit that section**
 10. **No file output** — everything goes to the terminal
-
-## Notes
-
-- **IMPORTANT: Do NOT use the browser MCP for screenshots.** Always use local headless Chrome via the Bash tool instead.
-- If Chrome is not installed, proceed with text-only analysis
-- Priority classification is a guideline — use judgment for edge cases (e.g., if a "medium" item is egregiously bad, promote it to critical)
-- The strategy should be a working document — someone should be able to hand it to a designer/developer and say "do these in order"
+11. **Priority classification is a guideline** — use judgment for edge cases (e.g., if a "medium" item is egregiously bad, promote it to critical)

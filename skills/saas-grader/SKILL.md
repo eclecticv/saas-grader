@@ -1,8 +1,18 @@
+---
+name: saas-grader
+description: >
+  This skill should be used when the user asks to audit, score, grade, or
+  analyze a SaaS website, homepage, or pricing page. Triggers include
+  "grade my SaaS site", "audit this homepage", "score my pricing page",
+  "what's wrong with my landing page", "review my SaaS website against
+  best practices", "run the 47-rule checklist", "export a SaaS optimization
+  report", "how do I improve my SaaS homepage", "conversion optimization audit",
+  "pricing page review", or "SaaS website teardown".
+---
+
 # SaaS Grader
 
 A research-backed analysis tool that scores SaaS websites against 47 optimization rules drawn from peer-reviewed marketing science and UX research. Every rule includes the full research citation — no opinions, no fluff.
-
-Rules drawn from peer-reviewed marketing science and UX research, supplemented with Nielsen Norman Group eyetracking studies.
 
 ## Purpose
 
@@ -52,25 +62,7 @@ Altruistic framing, pre-filled messages, avoid money rewards, keep rewards small
 
 ## Scoring
 
-Each section receives a letter grade (A+ through F) based on the percentage of applicable items that pass:
-
-| Grade | Pass Rate |
-|-------|-----------|
-| A+    | 100%      |
-| A     | 90-99%    |
-| A-    | 85-89%    |
-| B+    | 80-84%    |
-| B     | 75-79%    |
-| B-    | 70-74%    |
-| C+    | 65-69%    |
-| C     | 60-64%    |
-| C-    | 55-59%    |
-| D+    | 50-54%    |
-| D     | 45-49%    |
-| D-    | 40-44%    |
-| F     | Below 40% |
-
-Items marked N/A are excluded from the denominator.
+Each section receives a letter grade (A+ through F) based on the percentage of applicable items that pass. N/A items are excluded from the denominator. See `reference/shared-procedures.md` for the full grading scale, scoring rules, and crawl/screenshot procedure.
 
 ## Output Format
 
@@ -82,14 +74,3 @@ For each of the 47 rules, the `.md` report includes:
 - **Observation** — what was specifically observed on the site
 - **How to fix** — concrete, actionable recommendation (only if FAIL)
 
-## Research Sources
-
-All rules are drawn from peer-reviewed research published in journals including:
-- Journal of Marketing, Journal of Marketing Research, Journal of Consumer Research
-- Marketing Science, Management Science
-- Journal of Business Research, International Journal of Research in Marketing
-- Journal of Consumer Psychology, Journal of Service Research
-- Information Systems Research, International Journal of Advertising
-- Business Horizons, Proceedings of the Human Factors and Ergonomics Society
-
-Research conducted at institutions including: UCLA, Stanford, MIT Sloan, University of Melbourne, National University of Singapore, University of Washington, Georgetown University, University of South Florida, University of British Columbia, Nielsen Norman Group, Babson College, University of Miami, Bentley University, Oklahoma State University, University of Florida, Fudan University, Oregon State University, Princeton University, and many others.
