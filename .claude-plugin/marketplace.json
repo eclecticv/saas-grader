@@ -11,14 +11,14 @@
   "plugins": [
     {
       "name": "saas-grader",
-      "description": "Score SaaS websites against 47 research-backed optimization rules from peer-reviewed marketing science, plus 21 search discoverability checks with competitive landscape analysis and content pillar recommendations.",
-      "version": "1.0.0",
+      "description": "Score SaaS websites against 47 research-backed optimization rules from peer-reviewed marketing science. Audit prints scorecard on screen, plan generates prioritized fix strategy, export writes full detailed report.",
+      "version": "2.0.0",
       "author": {
         "name": "And/or Labs"
       },
       "source": "./",
       "category": "marketing",
-      "tags": ["saas", "marketing", "optimization", "homepage", "pricing", "seo", "competitive-analysis", "content-strategy"],
+      "tags": ["saas", "marketing", "optimization", "homepage", "pricing", "conversion"],
       "homepage": "https://github.com/eclecticv/saas-grader"
     }
   ]

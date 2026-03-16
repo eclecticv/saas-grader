@@ -1,6 +1,6 @@
 # saas-grader
 
-Score SaaS websites against 68 research-backed checks across conversion optimization and search discoverability. Every rule cites peer-reviewed research. No opinions.
+Score SaaS websites against 47 research-backed optimization rules from peer-reviewed marketing science. Every rule cites its source. No opinions.
 
 ## Install
 
@@ -17,10 +17,9 @@ claude --plugin-dir /path/to/saas-grader
 
 | Command | Usage | What it does |
 |---------|-------|-------------|
-| **grade** | `/saas-grader:grade <url>` | 47-rule SaaS optimization audit |
-| **search** | `/saas-grader:search <url>` | 21-check SEO audit + competitive landscape + content pillars |
-| **wins** | `/saas-grader:wins <url>` | One-page prioritized summary (shareable) |
-| **export** | `/saas-grader:export <url>` | Full combined report (68 checks + competitors + pillars) |
+| **audit** | `/saas-grader:audit <url>` | Run 47 rules, print scorecard + findings on screen |
+| **plan** | `/saas-grader:plan <url>` | Generate prioritized fix strategy (critical/medium/low) |
+| **export** | `/saas-grader:export <url>` | Write full 47-rule detailed report to markdown file |
 
 ## What It Checks
 
@@ -36,21 +35,6 @@ claude --plugin-dir /path/to/saas-grader
 | Churn Prevention | 3 | Journal of the Academy of Marketing Science |
 | Affiliates | 2 | International Journal of Research in Marketing |
 | Referrals | 5 | Journal of Marketing, American Economic Review |
-
-### Search Discoverability (21 checks)
-
-| Category | Checks | Source |
-|----------|--------|--------|
-| Technical SEO | 8 | Google Search Central, web.dev, Moz |
-| E-E-A-T Signals | 7 | Google Quality Rater Guidelines, Ahrefs |
-| Content Depth | 6 | HubSpot, Backlinko, Content Marketing Institute |
-
-### Competitive Landscape
-
-The `search` and `export` commands also generate:
-- Top 3 SERP competitors profiled with content gaps
-- 3-5 scored content pillars with article recommendations
-- Opportunity scoring (Relevance x Difficulty x Volume)
 
 ## Output Format
 
