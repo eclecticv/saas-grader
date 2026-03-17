@@ -5,7 +5,7 @@ Score SaaS websites against 47 research-backed optimization rules from peer-revi
 ## Install
 
 ```bash
-claude /install eclecticv/saas-grader
+claude /install saas-grader@andorlabs
 ```
 
 Or load for a single session:
