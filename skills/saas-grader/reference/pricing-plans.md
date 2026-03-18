@@ -1,5 +1,7 @@
 # Pricing Plan Optimization (PR-1 to PR-9)
 
+<!-- Built: 2026-03-18 | Based on original peer-reviewed papers cited within each rule -->
+
 ## PR-1: Offer 3-5 Plans
 
 **What it is:** The pricing page presents between 3 and 5 plan options (including any free tier).

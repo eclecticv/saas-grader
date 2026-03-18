@@ -59,6 +59,8 @@ The file must follow this EXACT structure:
 
 **Source:** [Copy the full "Source" citation from the reference file — word for word]
 
+**Recommendation:** [Copy the "Recommendation" text from the reference file — word for word]
+
 **Compliance:** PASS | FAIL | N/A
 
 **Observation:** [What you actually observed on the site — be specific. Quote the actual headline, describe what you saw, cite evidence.]
@@ -101,7 +103,7 @@ The file must follow this EXACT structure:
 ## Critical Rules for the Output
 
 1. **Every single rule gets its own section** — no exceptions, no skipping, no grouping
-2. **"What it is" and "Why it matters" are copied word-for-word** from the reference files
+2. **"What it is", "Why it matters", and "Recommendation" are copied word-for-word** from the reference files
 3. **"Source" is the full citation** from the reference files
 4. **"Observation" is specific** — never say "vague headline." Say what the headline actually says.
 5. **"How to fix" is actionable** — give a concrete alternative, not vague advice

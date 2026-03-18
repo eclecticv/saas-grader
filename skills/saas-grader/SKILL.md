@@ -42,23 +42,23 @@ Design structure matches product type, brand-appropriate colors, layout adapted 
 
 ### 4. Free Trials (4 rules: FT-1 to FT-4)
 Full-feature trial, 7-day length, high trial usage, extensions over discounts.
-> See [reference/growth-levers.md](reference/growth-levers.md)
+> See [reference/free-trials.md](reference/free-trials.md)
 
 ### 5. Freemium (2 rules: FM-1 to FM-2)
 Usage-limited freemium, freemium decoy plan.
-> See [reference/growth-levers.md](reference/growth-levers.md)
+> See [reference/freemium.md](reference/freemium.md)
 
 ### 6. Churn Prevention (3 rules: CP-1 to CP-3)
 Customer gifts, auto-enrolling loyalty program, generous downgrades.
-> See [reference/growth-levers.md](reference/growth-levers.md)
+> See [reference/churn-prevention.md](reference/churn-prevention.md)
 
 ### 7. Affiliates (2 rules: AF-1 to AF-2)
 Optimize affiliate payment model, protect from deceptive affiliates.
-> See [reference/growth-levers.md](reference/growth-levers.md)
+> See [reference/affiliates.md](reference/affiliates.md)
 
 ### 8. Referrals (5 rules: RF-1 to RF-5)
 Altruistic framing, pre-filled messages, avoid money rewards, keep rewards small, targeted referrals.
-> See [reference/growth-levers.md](reference/growth-levers.md)
+> See [reference/referrals.md](reference/referrals.md)
 
 ## Scoring
 
@@ -70,6 +70,7 @@ For each of the 47 rules, the `.md` report includes:
 - **What it is** — description of the rule (from the reference)
 - **Why it matters** — the science behind it (from the reference)
 - **Source** — full research citation with authors, journal, date, and universities
+- **Recommendation** — actionable guidance from the research (from the reference)
 - **Compliance** — PASS, FAIL, or N/A
 - **Observation** — what was specifically observed on the site
 - **How to fix** — concrete, actionable recommendation (only if FAIL)

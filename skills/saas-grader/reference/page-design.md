@@ -1,5 +1,7 @@
 # Page Design & Visuals (PD-1 to PD-14)
 
+<!-- Built: 2026-03-18 | Based on original peer-reviewed papers cited within each rule -->
+
 ## PD-1: Design Structure Matches Product Type
 
 **What it is:** The visual design language aligns with what the product promises — structured designs for reliability, unstructured designs for excitement.

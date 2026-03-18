@@ -1,5 +1,7 @@
 # Brand & Messaging (BM-1 to BM-8)
 
+<!-- Built: 2026-03-18 | Based on original peer-reviewed papers cited within each rule -->
+
 ## BM-1: Productize Your Headline
 
 **What it is:** Frame your software as a specific end-to-end product with a clear outcome, not a generic service or vague capability.

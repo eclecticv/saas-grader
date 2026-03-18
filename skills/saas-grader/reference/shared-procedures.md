@@ -12,11 +12,15 @@ Common procedures used by all saas-grader commands (audit, plan, export).
    - If a pricing page was found, screenshot it too: `"/path/to/chrome" --headless --disable-gpu --no-sandbox --screenshot="[company]-pricing.png" --window-size=1280,4000 "[pricing-url]"`
    - Read the screenshot files using the Read tool to visually inspect them
    - Delete the screenshot files after inspection
-4. **Read all 4 reference files** to get the full checklist:
+4. **Read all 8 reference files** to get the full checklist:
    - `skills/saas-grader/reference/brand-messaging.md` (BM-1 to BM-8)
    - `skills/saas-grader/reference/page-design.md` (PD-1 to PD-14)
    - `skills/saas-grader/reference/pricing-plans.md` (PR-1 to PR-9)
-   - `skills/saas-grader/reference/growth-levers.md` (FT-1 to FT-4, FM-1 to FM-2, CP-1 to CP-3, AF-1 to AF-2, RF-1 to RF-5)
+   - `skills/saas-grader/reference/free-trials.md` (FT-1 to FT-4)
+   - `skills/saas-grader/reference/freemium.md` (FM-1 to FM-2)
+   - `skills/saas-grader/reference/churn-prevention.md` (CP-1 to CP-3)
+   - `skills/saas-grader/reference/affiliates.md` (AF-1 to AF-2)
+   - `skills/saas-grader/reference/referrals.md` (RF-1 to RF-5)
 5. **Score every single rule** as PASS, FAIL, or N/A based on what you observed
 
 ## Scoring Rules
@@ -55,5 +59,5 @@ Extract the company name from the page title or domain, using the brand name onl
 ## Notes
 
 - **IMPORTANT: Do NOT use the browser MCP for screenshots.** Always use local headless Chrome via the Bash tool instead.
-- If Chrome is not installed, proceed with text-only analysis and note that visual checks (PD items) may be less accurate
+- If Chrome is not installed or screenshots fail, proceed with text-only analysis. These rules require visual inspection and should be scored with reduced confidence (note in observation): PD-1, PD-2, PD-5, PD-6, PD-7, PD-8, PD-11. Other PD rules (PD-3, PD-4, PD-9, PD-10, PD-12, PD-13, PD-14) can be adequately assessed from text content alone
 - If no pricing page is found, note it and score pricing items as N/A where they require pricing page content
