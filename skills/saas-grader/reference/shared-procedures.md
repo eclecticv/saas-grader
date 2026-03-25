@@ -1,26 +1,26 @@
 # Shared Procedures
 
-Common procedures used by all saas-grader commands (audit, plan, export).
+Common procedures used by the `/saas-grader:saas` command.
 
 ## Crawl & Screenshot Procedure
 
-1. **Crawl the homepage** via WebFetch to extract text content
-2. **Find the pricing page** — look for pricing/plans links in the navigation or page content. If found, crawl it too via WebFetch
-3. **Screenshot both pages** using local headless Chrome (NOT the browser MCP, which runs in Docker and may not be available):
+1. **Crawl the homepage** via WebFetch to extract text content (if the page content exceeds 50KB, work with the first 50KB only)
+2. **Find the pricing page** — look for pricing/plans links in the navigation or page content. If found, crawl it too via WebFetch (same 50KB limit)
+3. **Screenshot the homepage only** using local headless Chrome (NOT the browser MCP, which runs in Docker and may not be available):
    - First, find the Chrome binary: `which google-chrome-stable 2>/dev/null || which google-chrome 2>/dev/null || which chromium 2>/dev/null || ls "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" 2>/dev/null`
-   - Screenshot the homepage: `"/path/to/chrome" --headless --disable-gpu --no-sandbox --screenshot="[company]-homepage.png" --window-size=1280,4000 "[url]"`
-   - If a pricing page was found, screenshot it too: `"/path/to/chrome" --headless --disable-gpu --no-sandbox --screenshot="[company]-pricing.png" --window-size=1280,4000 "[pricing-url]"`
-   - Read the screenshot files using the Read tool to visually inspect them
-   - Delete the screenshot files after inspection
-4. **Read all 8 reference files** to get the full checklist:
-   - `skills/saas-grader/reference/brand-messaging.md` (BM-1 to BM-8)
-   - `skills/saas-grader/reference/page-design.md` (PD-1 to PD-14)
-   - `skills/saas-grader/reference/pricing-plans.md` (PR-1 to PR-9)
-   - `skills/saas-grader/reference/free-trials.md` (FT-1 to FT-4)
-   - `skills/saas-grader/reference/freemium.md` (FM-1 to FM-2)
-   - `skills/saas-grader/reference/churn-prevention.md` (CP-1 to CP-3)
-   - `skills/saas-grader/reference/affiliates.md` (AF-1 to AF-2)
-   - `skills/saas-grader/reference/referrals.md` (RF-1 to RF-5)
+   - Screenshot the homepage: `"/path/to/chrome" --headless=new --disable-gpu --no-sandbox --screenshot="[company]-homepage.png" --window-size=1280,900 "[url]"`
+   - Read the screenshot file using the Read tool to visually inspect the above-the-fold area
+   - Delete the screenshot file after inspection
+   - **Do NOT screenshot the pricing page** — text analysis from WebFetch is sufficient for pricing rules
+4. **Read reference files in batches as you score each section** (do NOT load all 8 at once):
+   - Score Brand & Messaging → read `skills/saas-grader/reference/brand-messaging.md` (BM-1 to BM-8)
+   - Score Page Design → read `skills/saas-grader/reference/page-design.md` (PD-1 to PD-14)
+   - Score Pricing Plans → read `skills/saas-grader/reference/pricing-plans.md` (PR-1 to PR-9)
+   - Score Free Trials → read `skills/saas-grader/reference/free-trials.md` (FT-1 to FT-4)
+   - Score Freemium → read `skills/saas-grader/reference/freemium.md` (FM-1 to FM-2)
+   - Score Churn Prevention → read `skills/saas-grader/reference/churn-prevention.md` (CP-1 to CP-3)
+   - Score Affiliates → read `skills/saas-grader/reference/affiliates.md` (AF-1 to AF-2)
+   - Score Referrals → read `skills/saas-grader/reference/referrals.md` (RF-1 to RF-5)
 5. **Score every single rule** as PASS, FAIL, or N/A based on what you observed
 
 ## Scoring Rules
@@ -59,5 +59,6 @@ Extract the company name from the page title or domain, using the brand name onl
 ## Notes
 
 - **IMPORTANT: Do NOT use the browser MCP for screenshots.** Always use local headless Chrome via the Bash tool instead.
+- **IMPORTANT: Use `--headless=new` and `--window-size=1280,900`** — never use heights above 900px. The above-the-fold screenshot plus WebFetch text content is sufficient for all 47 rules. Larger screenshots cause excessive memory usage.
 - If Chrome is not installed or screenshots fail, proceed with text-only analysis. These rules require visual inspection and should be scored with reduced confidence (note in observation): PD-1, PD-2, PD-5, PD-6, PD-7, PD-8, PD-11. Other PD rules (PD-3, PD-4, PD-9, PD-10, PD-12, PD-13, PD-14) can be adequately assessed from text content alone
 - If no pricing page is found, note it and score pricing items as N/A where they require pricing page content

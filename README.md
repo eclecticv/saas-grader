@@ -13,13 +13,13 @@ Or load for a single session:
 claude --plugin-dir /path/to/saas-grader
 ```
 
-## Commands
+## Usage
 
-| Command | Usage | What it does |
-|---------|-------|-------------|
-| **audit** | `/saas-grader:audit <url>` | Run 47 rules, print scorecard + findings on screen |
-| **plan** | `/saas-grader:plan <url>` | Generate prioritized fix strategy (critical/medium/low) |
-| **export** | `/saas-grader:export <url>` | Write full 47-rule detailed report to markdown file |
+```
+/saas-grader:saas <url>
+```
+
+One command does everything: scores all 47 rules, prints a prioritized scorecard to the terminal, and writes a full detailed report to `~/Desktop/claude-code/`.
 
 ## What It Checks
 

@@ -20,11 +20,13 @@ Analyze a SaaS homepage and pricing page against every rule in the playbook. For
 
 ## How It Works
 
-1. **Crawl** the homepage via WebFetch (text content extraction)
-2. **Find the pricing page** — detect pricing links in navigation and crawl if found
-3. **Screenshot both pages** using local headless Chrome (full-page captures)
-4. **Score every rule** — all 47 items, each as PASS, FAIL, or N/A
-5. **Export** a comprehensive `.md` report covering every rule with full context
+One command does everything — `/saas-grader:saas <url>`:
+
+1. **Crawl** the homepage and pricing page via WebFetch (text content extraction)
+2. **Screenshot the homepage** using local headless Chrome (above-the-fold capture)
+3. **Score every rule** — all 47 items, each as PASS, FAIL, or N/A
+4. **Print** a scorecard with prioritized fixes to the terminal
+5. **Write** a comprehensive `.md` report to `~/Desktop/claude-code/`
 
 ## The 47-Rule Checklist
 
