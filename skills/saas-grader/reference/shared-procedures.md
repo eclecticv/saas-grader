@@ -8,9 +8,12 @@ Common procedures used by the `/saas-grader:saas` command.
 2. **Find the pricing page** — look for pricing/plans links in the navigation or page content. If found, crawl it too via WebFetch (same 50KB limit)
 3. **Screenshot the homepage only** using local headless Chrome (NOT the browser MCP, which runs in Docker and may not be available):
    - First, find the Chrome binary: `which google-chrome-stable 2>/dev/null || which google-chrome 2>/dev/null || which chromium 2>/dev/null || ls "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" 2>/dev/null`
-   - Screenshot the homepage: `"/path/to/chrome" --headless=new --disable-gpu --no-sandbox --screenshot="[company]-homepage.png" --window-size=1280,900 "[url]"`
-   - Read the screenshot file using the Read tool to visually inspect the above-the-fold area
-   - Delete the screenshot file after inspection
+   - Screenshot the homepage with 30-second timeout and memory limits (macOS-compatible):
+     ```bash
+     ( "/path/to/chrome" --headless=new --disable-gpu --no-sandbox --disable-extensions --disable-background-networking --disable-sync --disable-translate --disable-default-apps --js-flags="--max-old-space-size=256" --screenshot="[company]-homepage.png" --window-size=1280,900 "[url]" 2>/dev/null & CHROME_PID=$!; ( sleep 30 && kill $CHROME_PID 2>/dev/null ) & WATCHDOG=$!; wait $CHROME_PID 2>/dev/null; kill $WATCHDOG 2>/dev/null ); if [ ! -f "[company]-homepage.png" ]; then echo "Screenshot failed or timed out — proceeding with text-only analysis"; fi
+     ```
+   - If the screenshot file exists, read it using the Read tool to visually inspect the above-the-fold area, then delete it
+   - **If the screenshot failed or timed out, skip it entirely** — do NOT retry. Proceed with text-only analysis
    - **Do NOT screenshot the pricing page** — text analysis from WebFetch is sufficient for pricing rules
 4. **Read reference files in batches as you score each section** (do NOT load all 8 at once):
    - Score Brand & Messaging → read `skills/saas-grader/reference/brand-messaging.md` (BM-1 to BM-8)
@@ -59,6 +62,7 @@ Extract the company name from the page title or domain, using the brand name onl
 ## Notes
 
 - **IMPORTANT: Do NOT use the browser MCP for screenshots.** Always use local headless Chrome via the Bash tool instead.
-- **IMPORTANT: Use `--headless=new` and `--window-size=1280,900`** — never use heights above 900px. The above-the-fold screenshot plus WebFetch text content is sufficient for all 47 rules. Larger screenshots cause excessive memory usage.
+- **IMPORTANT: Use `--headless=new` and `--window-size=1280,900`** — never use heights above 900px. Larger screenshots cause excessive memory usage.
+- **Memory safety:** The screenshot command has a 30-second timeout and 256MB JS heap limit. If it fails, times out, or produces no file, proceed with text-only analysis. Never retry a failed screenshot. Text analysis via WebFetch is the primary data source — the screenshot is supplementary for visual layout checks only.
 - If Chrome is not installed or screenshots fail, proceed with text-only analysis. These rules require visual inspection and should be scored with reduced confidence (note in observation): PD-1, PD-2, PD-5, PD-6, PD-7, PD-8, PD-11. Other PD rules (PD-3, PD-4, PD-9, PD-10, PD-12, PD-13, PD-14) can be adequately assessed from text content alone
 - If no pricing page is found, note it and score pricing items as N/A where they require pricing page content
