@@ -35,6 +35,16 @@ Common procedures used by the `/saas-grader:saas` command.
 - When uncertain, lean toward FAIL with a note about what you couldn't verify
 - For items marked N/A, still include them in the output but note why they don't apply
 
+## Rigor Protocol
+
+Before finalizing any PASS score, argue the other side:
+
+1. **Re-read the FAIL criteria** — does any bullet point apply, even partially?
+2. **Apply the "stranger test"** — would a first-time visitor with no industry knowledge understand this? Don't project your own familiarity onto the visitor.
+3. **Separate headline from page** — if the headline alone doesn't pass but supporting copy below the fold does, note the gap. The headline carries most of the weight because most visitors never scroll.
+4. **Watch for borrowed positioning** — "X for Y" comparisons ("Superhuman for X," "Figma for Y") are a common pattern that can mask weak self-description. Evaluate whether messaging stands on its own without the comparison.
+5. **No cheerleading** — observations should be analytical, not congratulatory. Note what works AND what's weak, even on passing items. Every observation should include what could be stronger.
+
 ## Grading Scale
 
 Calculate a letter grade for each section based on pass rate:

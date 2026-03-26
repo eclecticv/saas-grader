@@ -18,11 +18,13 @@
 - Headline names a concrete outcome or end-to-end product
 - Specific about what the software does — easy to visualize the value in under 5 seconds
 - Clear what you get for what price
+- The product is self-describing — a visitor understands it without needing to know another brand
 
 **FAIL criteria:**
 - Vague headline like "Transform your business" or "Unlock your potential"
 - Generic service description rather than a productized offering
 - Requires reading further to understand what the product actually does
+- Headline relies on "X for Y" comparison ("Superhuman for X") as the primary product description — borrowed brand equity is not a productized headline. The comparison may work as a supporting tagline but the headline should self-describe. Note: if the subheadline compensates with a concrete, self-describing product statement, this can still PASS — but flag the borrowed framing in the observation
 
 ---
 
