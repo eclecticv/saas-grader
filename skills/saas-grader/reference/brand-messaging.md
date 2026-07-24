@@ -40,6 +40,13 @@
 
 **Source:** Shu, S. B., & Carlson, K. A. When three charms but four alarms: Identifying the optimal number of claims in persuasion settings. *Journal of Marketing* (January 2014). **Universities:** UCLA Anderson School of Management, University of California & McDonough School of Business, Georgetown University.
 
+**Decision procedure:** A "benefit" is a distinct value claim rendered in the hero
+viewport as an enumerated unit: a bullet, badge, feature chip, checkmark item, or an
+explicitly enumerated subhead clause ("Fast, secure, and open-source" = 3). Do NOT
+count: nav items, CTAs, customer logos, the headline itself, or body prose that isn't
+enumerated. Count them from the screenshot (fold = 900px) plus the DOM headings/text;
+state the count and list the units in the observation. PASS iff count == 3.
+
 **PASS criteria:**
 - Exactly 3 benefits or key features highlighted prominently above the fold
 - Benefits are the strongest differentiators, not generic features
@@ -184,6 +191,12 @@
 **Key stat:** First review sets the tone for all subsequent perception and purchasing behavior.
 
 **Source:** Park, S., Shin, W., & Xie, J. The fateful first consumer review. *Marketing Science* (February 2021). **Universities:** Darla Moore School of Business, University of South Carolina & Warrington College of Business, University of Florida.
+
+**Decision procedure:** The "first testimonial" is the testimonial nearest the top of
+the homepage (first entry in the extracted `testimonialCandidates`, corroborated by
+the screenshot). Quote it verbatim in the observation. If the DOM extraction finds no
+testimonial candidates AND none is visible in the screenshot, that is a FAIL under
+"no testimonials visible" — not N/A, and not a judgment call about quality.
 
 **PASS criteria:**
 - First testimonial speaks to the product's core value proposition

@@ -2,6 +2,12 @@
 
 <!-- Built: 2026-03-18 | Based on original peer-reviewed papers cited within each rule -->
 
+**Tier note (applies to all AF rules):** Practice-tier — affiliate program mechanics
+are only observable when the site publishes affiliate/partner terms. These rules appear
+in the ungraded Practices Review appendix. Default verdict is UNVERIFIED (with the
+founder question); score informationally only when affiliate terms are actually found.
+If no affiliate program exists at all, mark N/A.
+
 ## AF-1: Optimize Affiliate Payment Model
 
 **What it is:** The affiliate payment model is matched to the program type — pay-per-lead for curated programs, pay-per-conversion for open programs.

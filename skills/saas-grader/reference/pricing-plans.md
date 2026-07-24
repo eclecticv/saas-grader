@@ -14,6 +14,12 @@
 
 **Source:** Simonson, I., & Tversky, A. Choice in Context: Tradeoff Contrast and Extremeness Aversion. *Journal of Marketing Research* (August 1992). **Universities:** Haas School of Business, University of California Berkeley, and Stanford University.
 
+**Decision procedure:** A "plan" is a named tier card on the pricing page. COUNT:
+free tiers and enterprise/"Contact us" tiers — both are choices the visitor weighs.
+DON'T COUNT: add-ons, billing-period toggles (monthly/annual is one plan, not two),
+or one-off services. State the count and list the plan names in the observation.
+PASS iff 3 ≤ count ≤ 5.
+
 **PASS criteria:**
 - 3 to 5 distinct plans visible
 - Clear basic/standard/premium progression
@@ -65,6 +71,10 @@
 
 **Source:** Cai, F., Shen, H., & Hui, M. K. The Effect of Location on Price Estimation: Understanding Number-Location and Number-Order Associations. *Journal of Marketing Research* (October 2012). **Universities:** Shanghai Jiao Tong University & Chinese University of Hong Kong.
 
+**Decision procedure:** This is a visual-position rule — score it ONLY from the
+pricing-page screenshot (or an unambiguous DOM ordering of plan cards with prices).
+Without that evidence the verdict is UNVERIFIED, never a text-inferred FAIL.
+
 **PASS criteria:**
 - Plans arranged left to right from cheapest to most expensive
 - Price displayed on the left side of each plan card
@@ -88,6 +98,10 @@
 **Key stat:** Lower vertical position for price increases subscription likelihood.
 
 **Source:** Cai, F., Shen, H., & Hui, M. K. The Effect of Location on Price Estimation: Understanding Number-Location and Number-Order Associations. *Journal of Marketing Research* (October 2012). **Universities:** Shanghai Jiao Tong University & Chinese University of Hong Kong.
+
+**Decision procedure:** Visual-position rule — score ONLY from the pricing-page
+screenshot. Describe the actual card layout (what's at top, middle, bottom) in the
+observation. Without the screenshot the verdict is UNVERIFIED.
 
 **PASS criteria:**
 - Price appears below the feature list

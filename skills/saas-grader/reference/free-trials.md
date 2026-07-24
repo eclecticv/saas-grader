@@ -62,6 +62,13 @@
 
 **Source:** Foubert, B., & Gijsbrechts, E. Try It, You'll Like It—Or Will You? The Perils of Early Free-Trial Promotions for High-Tech Service Adoption. *Marketing Science* (May 2016). **Universities:** Maastricht University and Tilburg University.
 
+**Tier note:** Practice-tier rule — trial onboarding quality is not observable from a
+homepage crawl. Report it in the Practices Review appendix, excluded from grades.
+Default verdict is UNVERIFIED with the question the founder should answer ("Does your
+trial open with guided onboarding and engagement hooks?"). Score PASS/FAIL
+informationally only if the site itself shows concrete evidence (e.g. an onboarding
+tour advertised on the trial signup page).
+
 **PASS criteria:**
 - Onboarding flow guides new trial users
 - Feature recommendations or tips during trial
@@ -87,6 +94,11 @@
 **Key stat:** Discounts led to 50.1% lower willingness to pay vs. free trial extensions.
 
 **Source:** Palmeira, M. M., & Srivastava, J. Free Offer ≠ Cheap Product: A Selective Accessibility Account on the Valuation of Free Offers. *Journal of Consumer Research* (December 2013). **Universities:** Monash University and Temple University.
+
+**Tier note:** Practice-tier rule — trial-end conversion tactics are not observable
+from the website. Report in the Practices Review appendix, excluded from grades;
+default UNVERIFIED with the founder question ("When a trial ends, do you offer an
+extension or a discount?"). Score informationally only with concrete on-site evidence.
 
 **PASS criteria:**
 - Trial extension offered as conversion incentive

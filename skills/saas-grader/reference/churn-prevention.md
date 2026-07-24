@@ -2,6 +2,13 @@
 
 <!-- Built: 2026-03-18 | Based on original peer-reviewed papers cited within each rule -->
 
+**Tier note (applies to all CP rules):** Practice-tier — churn-prevention tactics
+(gifts, loyalty programs, downgrade offers) live in the product and billing flows, not
+on the marketing site. These rules appear in the ungraded Practices Review appendix.
+Default verdict is UNVERIFIED, phrased as the question the founder should answer.
+Score PASS/FAIL informationally only when the site shows concrete evidence (e.g. a
+public loyalty-program page). Never FAIL a CP rule for mere absence of on-site evidence.
+
 ## CP-1: Customer Gifts
 
 **What it is:** The company gives unexpected gifts or rewards to long-time customers as a retention strategy.

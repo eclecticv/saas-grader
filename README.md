@@ -19,7 +19,7 @@ claude --plugin-dir /path/to/saas-grader
 /saas-grader:saas <url>
 ```
 
-One command does everything: scores all 47 rules, prints a prioritized scorecard to the terminal, and writes a full detailed report to `~/Desktop/claude-code/`.
+One command does everything: classifies the site, extracts measured evidence from the rendered DOM, screenshots the homepage and pricing page, scores all 47 rules with cited evidence and confidence levels, prints a prioritized scorecard to the terminal, and writes a full detailed report (with a machine-readable JSON block for run-over-run deltas) to `~/Documents/Inbox/`.
 
 ## What It Checks
 
@@ -42,15 +42,21 @@ Every rule produces:
 - **What it is** — from the reference (word for word)
 - **Why it matters** — the research rationale
 - **Source** — full citation (authors, journal, year)
-- **Compliance** — PASS / FAIL / N/A
-- **Observation** — what was found on the site
-- **How to fix** — actionable recommendation (FAIL only)
+- **Observation** — the measured evidence (quotes, counts, screenshot reads), stated before the verdict
+- **Compliance** — PASS / FAIL / N/A / UNVERIFIED, naming the criterion that fired, with confidence
+- **How to fix** — actionable recommendation with effort class (FAIL only)
+
+Grades are weighted by each rule's research strength and effect size. Operational
+practices that can't be seen from the website (churn tactics, affiliate terms, trial
+ops) are reported in an ungraded Practices Review instead of being guessed at.
 
 ## Requirements
 
 - Claude Code CLI
-- WebFetch (built-in)
-- Chrome (optional, for homepage/pricing screenshots)
+- A Chromium-based browser for DOM extraction and screenshots — Chrome, Chromium, Brave,
+  Edge, Arc, or a Playwright-installed headless shell are all auto-discovered
+- Node.js (for the zero-dependency signal extractor; graceful fallback without it)
+- WebFetch (built-in, used only as a last-resort fallback)
 
 ## License
 

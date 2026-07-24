@@ -259,6 +259,13 @@
 
 **Source:** Nielsen Norman Group. Eyetracking study with 120 participants and 130,000+ fixations across news, ecommerce, blogs, and FAQs. Published on nngroup.com (2018). Also: "The Illusion of Completeness" (NN/g, 2018). **Universities:** Nielsen Norman Group.
 
+**Decision procedure:** Answer four yes/no questions from the 1280×900 homepage
+screenshot, and record all four answers in the observation: (1) is a value proposition
+visible? (2) is a primary CTA visible? (3) is at least one trust signal (logo bar,
+rating, user count, testimonial) visible? (4) is there a scroll cue (cut-off content,
+arrow, partial element)? PASS iff 1–3 are all yes; treat 4 as a note, not a gate.
+Without a screenshot this rule is UNVERIFIED.
+
 **PASS criteria:**
 - Value proposition, primary CTA, and a trust signal all visible without scrolling
 - Visual cues (cut-off content, arrows, partial elements) indicate more content below
@@ -282,6 +289,11 @@
 **Key stat:** 79% of users scan rather than read. Reading from screens is 25% slower than print.
 
 **Source:** Nielsen Norman Group. "Be Succinct! Writing for the Web" (nngroup.com, 1997; updated findings). Also: "How Users Read on the Web" (NN/g). **Universities:** Nielsen Norman Group.
+
+**Decision procedure:** Use the extracted `textStats`: FAIL if `paragraphsOver60Words`
+≥ 2, or if pricing is described in prose paragraphs instead of structured cards.
+Otherwise PASS. Cite the numbers (`longestParagraphWords`, `paragraphsOver60Words`,
+`totalVisibleWords`) in the observation.
 
 **PASS criteria:**
 - Copy is concise — no paragraph exceeds 3-4 lines
@@ -309,6 +321,15 @@
 
 **Source:** Nielsen Norman Group. "The Layer-Cake Pattern of Scanning Content on the Web" (nngroup.com). Eyetracking studies documented since 2004. Also: "How Chunking Helps Content Processing" (NN/g). **Universities:** Nielsen Norman Group.
 
+**Decision procedure:** List every h2/h3 from the extracted `headings` in the
+observation, classifying each as descriptive or generic. Generic = matches or closely
+paraphrases: "How It Works", "Why Us", "Why [Brand]", "Features", "Our Solution",
+"Benefits", "What We Do", "Get Started", "About", "FAQ", "Testimonials", "Pricing"
+(bare labels with no information-carrying words). PASS iff ≥60% of section headings
+are descriptive AND reading only the headings conveys what the product does. Structural
+labels for utility sections (FAQ, Pricing) don't count against the ratio when they
+label genuinely structural sections — judge the marketing sections.
+
 **PASS criteria:**
 - Content chunked into visually distinct sections with clear boundaries
 - Subheadings are descriptive and specific (e.g., "Reduce Wasted Ad Spend by 40%")
@@ -334,6 +355,13 @@
 **Key stat:** Aesthetic judgments form in 50ms — roughly 10x faster than reading speed.
 
 **Source:** Nielsen Norman Group. "Aesthetic and Minimalist Design" — Usability Heuristic #8 (nngroup.com). Also: NN/g first-impression research. **Universities:** Nielsen Norman Group.
+
+**Decision procedure:** Enumerate the page's sections (from headings + screenshot) and
+assign each a role: trust / value / action / other. In the observation, list any pair
+of sections making the same claim in different words. FAIL iff there are ≥2 redundant
+sections, OR ≥2 sections with no conversion role, OR >10 sections for a simple
+single-product page. Otherwise PASS. The section list is the evidence — no verdict
+without it.
 
 **PASS criteria:**
 - Every section has a clear role in the conversion path (establish trust, explain value, prompt action)

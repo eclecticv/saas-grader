@@ -22,11 +22,19 @@ Analyze a SaaS homepage and pricing page against every rule in the playbook. For
 
 One command does everything — `/saas-grader:saas <url>`:
 
-1. **Crawl** the homepage and pricing page via WebFetch (text content extraction)
-2. **Screenshot the homepage** using local headless Chrome (above-the-fold capture)
-3. **Score every rule** — all 47 items, each as PASS, FAIL, or N/A
-4. **Print** a scorecard with prioritized fixes to the terminal
-5. **Write** a comprehensive `.md` report to `~/Desktop/claude-code/`
+1. **Classify the site** first (B2B/B2C, utilitarian/hedonic, new/established,
+   monetization, pricing model) — conditional rules score against this declared
+   classification instead of re-deciding it per rule
+2. **Extract measured evidence** — rendered-DOM dump via local headless Chromium,
+   distilled to a signals JSON by `scripts/extract-signals.mjs` (headline, CTAs,
+   prices, social-proof numbers, ratings, trial mentions, fonts, text stats)
+3. **Screenshot** the homepage AND the pricing page (visual-position rules are never
+   scored from text)
+4. **Score every rule** — PASS, FAIL, N/A, or UNVERIFIED, each with cited evidence,
+   the criterion that fired, and a confidence level
+5. **Print** a scorecard with computed priorities to the terminal
+6. **Write** a comprehensive `.md` report (with a machine-readable JSON block for
+   run-over-run deltas) to `~/Documents/Inbox/`
 
 ## The 47-Rule Checklist
 
@@ -64,7 +72,15 @@ Altruistic framing, pre-filled messages, avoid money rewards, keep rewards small
 
 ## Scoring
 
-Each section receives a letter grade (A+ through F) based on the percentage of applicable items that pass. N/A items are excluded from the denominator. See `reference/shared-procedures.md` for the full grading scale, scoring rules, and crawl/screenshot procedure.
+Every rule carries a static tier (`mech` = measured, `judg` = anchored judgment,
+`prac` = operational practice), an evidence grade for its underlying research, an
+impact grade from its cited effect size, and a weight. Letter grades (A+ through F)
+come from the weighted pass rate over applicable rules; N/A and UNVERIFIED are
+excluded from denominators, and practice-tier rules (churn, affiliates, trial ops)
+live in an ungraded Practices Review appendix. Fix priority is computed per FAIL:
+rule weight + effort bonus (copy > design > product). See
+`reference/shared-procedures.md` for the classification step, evidence pipeline,
+verdict semantics, scoring table, and delta procedure.
 
 ## Output Format
 
@@ -73,7 +89,13 @@ For each of the 47 rules, the `.md` report includes:
 - **Why it matters** — the science behind it (from the reference)
 - **Source** — full research citation with authors, journal, date, and universities
 - **Recommendation** — actionable guidance from the research (from the reference)
-- **Compliance** — PASS, FAIL, or N/A
-- **Observation** — what was specifically observed on the site
-- **How to fix** — concrete, actionable recommendation (only if FAIL)
+- **Observation** — the concrete evidence (quotes, measured counts, screenshot
+  descriptions), stated before the verdict
+- **Compliance** — PASS, FAIL, N/A, or UNVERIFIED, naming the criterion that fired,
+  with a confidence level
+- **How to fix** — concrete, actionable recommendation with effort class (only if FAIL)
+
+The report also opens with the site classification and evidence-source table, notes
+verdict changes since the previous audit of the same company, and ends with a
+machine-readable JSON block used for those run-over-run comparisons.
 

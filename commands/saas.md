@@ -6,7 +6,9 @@ allowed-tools: Read, Write, Bash, WebFetch
 
 # Command: saas
 
-Analyze a SaaS website against 47 research-backed optimization rules. Prints a high-level scorecard with prioritized fixes to the terminal, then writes a comprehensive `.md` report to disk.
+Analyze a SaaS website against 47 research-backed optimization rules. Prints a
+high-level scorecard with prioritized fixes to the terminal, then writes a
+comprehensive `.md` report to disk.
 
 ## Usage
 ```
@@ -15,10 +17,24 @@ Analyze a SaaS website against 47 research-backed optimization rules. Prints a h
 
 ## What It Does
 
-1. **Follow the crawl & screenshot procedure** in `skills/saas-grader/reference/shared-procedures.md`
-2. **Apply the scoring rules and grading scale** from the same shared procedures file
-3. **Print the terminal summary** (see Terminal Output below)
-4. **Write the full report** to `~/Desktop/claude-code/[company]-saas-report.md` (see File Output below)
+All shared procedures live in `skills/saas-grader/reference/shared-procedures.md`.
+Follow them in this order:
+
+1. **Classify the site** (Step 0) — record the classification with evidence
+2. **Collect evidence** — DOM extraction via `extract-signals.mjs`, screenshots of
+   homepage AND pricing page, WebFetch only as fallback
+3. **Score every rule** using the four-verdict system (PASS / FAIL / N/A / UNVERIFIED),
+   the per-rule decision procedures, and the symmetric rigor protocol. Observation
+   before verdict; every verdict cites its criterion and carries a confidence level
+4. **Compute grades** — raw and weighted, per the scoring table. Practice-tier rules
+   go to the Practices Review appendix, ungraded
+5. **Compute priorities** per FAIL: weight + effort bonus (copy +3, design +2,
+   product +0) → Critical ≥8, Medium 5–7, Low ≤4
+6. **Check for a previous report** for the same company in the output directory and
+   build the Changes Since Last Audit section from its JSON block
+7. **Print the terminal summary** (below), then **write the full report** to
+   `~/Documents/Inbox/[company]-saas-report-[YYYY-MM-DD].md` (create the directory if
+   needed; never write to Desktop)
 
 ---
 
@@ -27,33 +43,34 @@ Analyze a SaaS website against 47 research-backed optimization rules. Prints a h
 Print this to the terminal first:
 
 ```
-SAAS AUDIT: [Company Name] — [total pass]/[total applicable] passing ([overall grade])
+SAAS AUDIT: [Company Name] — [raw pass]/[applicable] passing · weighted [W%] ([overall grade])
+Classified: [B2B/B2C] · [utilitarian/hedonic] · [new/established] · [monetization]
+Evidence: [DOM ✓/✗] [homepage screenshot ✓/✗] [pricing screenshot ✓/✗] · [n] UNVERIFIED
 
-  Brand & Messaging     [grade]  (X/Y)
-  Page Design           [grade]  (X/Y)
-  Pricing Plans         [grade]  (X/Y)
-  Free Trials           [grade]  (X/Y)
-  Freemium              [grade]  (X/Y)
-  Churn Prevention      [grade]  (X/Y)
-  Affiliates            [grade]  (X/Y)
-  Referrals             [grade]  (X/Y)
+  Brand & Messaging     [grade]  (X/Y · weighted W%)
+  Page Design           [grade]  (X/Y · weighted W%)
+  Pricing Plans         [grade]  (X/Y · weighted W%)
+  Free Trials           [grade]  (X/Y · weighted W%)   ← FT-1, FT-2 only
+  Freemium              [grade]  (X/Y · weighted W%)
+  Referrals             [grade]  (X/Y · weighted W%)
+  Practices Review      [n verified / n unverified]    ← ungraded: CP, AF, FT-3/4
 
-━━━ CRITICAL — Fix This Week ━━━
+━━━ CRITICAL — Fix This Week (priority ≥ 8) ━━━
 
-1. [Rule ID]: [Rule Name]
+1. [Rule ID] ([weight]+[effort bonus]=[priority]): [Rule Name]
    Problem: [One-sentence observation — quote the actual headline, CTA, etc.]
    Fix: [Specific, actionable recommendation with a concrete example]
-   Impact: [Why this matters — cite the research effect size]
+   Impact: [Cited research effect size]
 
-━━━ MEDIUM — Fix This Month ━━━
+━━━ MEDIUM — Fix This Month (5–7) ━━━
 
-2. [Rule ID]: [Rule Name]
+2. [Rule ID] ([priority]): [Rule Name]
    Problem: [observation]
    Fix: [recommendation]
 
-━━━ LOW — Backlog ━━━
+━━━ LOW — Backlog (≤ 4) ━━━
 
-3. [Rule ID]: [Rule Name]
+3. [Rule ID] ([priority]): [Rule Name]
    Problem: [observation]
    Fix: [recommendation]
 
@@ -61,60 +78,75 @@ SAAS AUDIT: [Company Name] — [total pass]/[total applicable] passing ([overall
 
 - [Rule ID]: [What they're doing well — be specific]
 
-Full report: ~/Desktop/claude-code/[company]-saas-report.md
+━━━ CHANGED SINCE LAST AUDIT ━━━   ← only if a previous report exists
+
+- [Rule ID]: [old verdict] → [new verdict] ([site-changed / re-evaluation / procedure-changed])
+
+Full report: ~/Documents/Inbox/[company]-saas-report-[date].md
 ```
 
 ### Terminal Output Rules
 
 1. **Scorecard first** — the summary table is the first thing the user sees
-2. **Only include FAILs** in the fix tiers — do not list PASSes or N/As
-3. **Critical tier gets full detail** — Problem + Fix + Impact
-4. **Medium and Low tiers get Problem + Fix** — keep concise
-5. **Top Wins section** — 3-5 strongest PASSes to show what's working
-6. **Be specific** — quote actual headlines, describe actual CTAs, cite real content
-7. **If a tier has no FAILs, omit it**
-
-### Priority Classification
-
-**Critical (Fix This Week)** — above the fold, directly block conversion, strongest research effect sizes:
-- BM-1, BM-2, BM-3, BM-6, BM-7, PD-5, PD-7, PD-11
-
-**Medium (Fix This Month)** — affect conversion but below fold or moderate effect sizes:
-- PD-1, PD-2, PD-3, PD-4, PD-8, PD-9, PD-12, PD-13, PD-14
-- PR-1 through PR-9, BM-8, FT-1, FT-3, FM-1, FM-2
-
-**Low (Backlog)** — less visible, harder to observe, smaller effect sizes:
-- BM-4, BM-5, PD-6, PD-10, RF-1 through RF-5, AF-1, AF-2, CP-1 through CP-3, FT-2, FT-4
-
-Use judgment for edge cases — promote egregiously bad items.
+2. **Only include FAILs** in the fix tiers — never PASSes, N/As, or UNVERIFIEDs
+3. **Critical tier gets full detail** — Problem + Fix + Impact; Medium and Low get
+   Problem + Fix
+4. **Top Wins section** — 3-5 strongest PASSes (highest weight) to show what's working
+5. **Be specific** — quote actual headlines, measured counts, actual CTAs
+6. **If a tier has no FAILs, omit it**
+7. **UNVERIFIED items** appear only as the count in the Evidence line of the terminal
+   summary — their detail lives in the file report
 
 ---
 
 ## File Output
 
-Write to `~/Desktop/claude-code/[company]-saas-report.md` with this EXACT structure:
+Write to `~/Documents/Inbox/[company]-saas-report-[YYYY-MM-DD].md` with this EXACT structure:
 
 ```markdown
 # SaaS Optimization Report: [Company Name]
 
 **URL:** [url]
 **Date:** [date]
-**Overall Score:** [total pass]/[total applicable] ([overall grade])
+**Plugin version:** [version from plugin.json]
+**Overall:** [raw pass]/[applicable] passing · weighted [w-pass]/[w-applicable] ([W%] — [grade])
 
----
+## Classification
+
+| Dimension | Value | Evidence |
+|-----------|-------|----------|
+| Audience | ... | ... |
+| Buying motivation | ... | ... |
+| Brand maturity | ... | ... |
+| Monetization | ... | ... |
+| Pricing model | ... | ... |
+| Experience-related | ... | ... |
+
+## Evidence Sources
+
+| Source | Status |
+|--------|--------|
+| Rendered DOM (homepage) | captured / failed |
+| Rendered DOM (pricing) | captured / failed / no pricing page |
+| Screenshot (homepage) | captured / failed |
+| Screenshot (pricing) | captured / failed |
+| WebFetch fallback | used / not needed |
 
 ## Summary
 
-| Section | Score | Grade |
-|---------|-------|-------|
-| Brand & Messaging | X/Y | [grade] |
-| Page Design & Visuals | X/Y | [grade] |
-| Pricing Plans | X/Y | [grade] |
-| Free Trials | X/Y | [grade] |
-| Freemium | X/Y | [grade] |
-| Churn Prevention | X/Y | [grade] |
-| Affiliates | X/Y | [grade] |
-| Referrals | X/Y | [grade] |
+| Section | Raw | Weighted | Grade |
+|---------|-----|----------|-------|
+| Brand & Messaging | X/Y | W% | [grade] |
+| Page Design & Visuals | X/Y | W% | [grade] |
+| Pricing Plans | X/Y | W% | [grade] |
+| Free Trials (FT-1, FT-2) | X/Y | W% | [grade] |
+| Freemium | X/Y | W% | [grade] |
+| Referrals | X/Y | W% | [grade] |
+| Practices Review (ungraded) | [n verified, n unverified] | — | — |
+
+## Changes Since Last Audit
+[Only if a previous report was found. One line per flip with cause; otherwise omit
+the section. "First audit on record" if none found.]
 
 ---
 
@@ -130,52 +162,52 @@ Write to `~/Desktop/claude-code/[company]-saas-report.md` with this EXACT struct
 
 **Recommendation:** [Copy from reference — word for word]
 
-**Compliance:** PASS | FAIL | N/A
+**Observation:** [What was actually measured/observed — quote headlines, counts from
+the signals JSON, screenshot descriptions. Written BEFORE the verdict.]
 
-**Observation:** [What you actually observed — quote headlines, describe CTAs, cite evidence]
+**Compliance:** PASS | FAIL | N/A | UNVERIFIED — [criterion bullet that fired] (confidence: High/Medium/Low)
 
-**How to fix:** [Only if FAIL. Specific, actionable.]
+**How to fix:** [Only if FAIL. Specific, actionable, with effort class: copy/design/product.]
 
 ---
 
-[...repeat for every rule in the section...]
+[...repeat for every graded rule in sections 1–6: BM, PD, PR, FT-1/FT-2, FM, RF...]
 
-## 2. Page Design & Visuals ([X/Y] — [Grade])
+## 7. Practices Review (ungraded)
 
-[...every PD rule...]
+[FT-3, FT-4, CP-1..3, AF-1..2 — same per-rule format, but verdicts default to
+UNVERIFIED phrased as the question the founder should answer. Score informationally
+only when on-site evidence exists.]
 
-## 3. Pricing Plans ([X/Y] — [Grade])
+## Machine-Readable Results
 
-[...every PR rule...]
-
-## 4. Free Trials ([X/Y] — [Grade])
-
-[...every FT rule...]
-
-## 5. Freemium ([X/Y] — [Grade])
-
-[...every FM rule...]
-
-## 6. Churn Prevention ([X/Y] — [Grade])
-
-[...every CP rule...]
-
-## 7. Affiliates ([X/Y] — [Grade])
-
-[...every AF rule...]
-
-## 8. Referrals ([X/Y] — [Grade])
-
-[...every RF rule...]
+```json
+{
+  "plugin": "saas-grader",
+  "version": "[plugin version]",
+  "url": "[url]",
+  "date": "[YYYY-MM-DD]",
+  "classification": { "audience": "...", "motivation": "...", "maturity": "...", "monetization": "...", "pricingModel": "...", "experienceRelated": false },
+  "evidence": { "domHomepage": true, "domPricing": true, "screenshotHomepage": true, "screenshotPricing": false, "webFetchFallback": false },
+  "overall": { "rawPass": 0, "rawApplicable": 0, "weightedPass": 0, "weightedApplicable": 0, "grade": "" },
+  "rules": [
+    { "id": "BM-1", "verdict": "FAIL", "confidence": "High", "weight": 5, "criterion": "...", "evidence": "..." }
+  ]
+}
+```
 ```
 
 ### File Output Rules
 
 1. **Every single rule gets its own section** — no exceptions, no skipping, no grouping
-2. **"What it is", "Why it matters", and "Recommendation" are copied word-for-word** from the reference files
-3. **"Source" is the full citation** from the reference files
-4. **"Observation" is specific** — never say "vague headline." Say what the headline actually says.
-5. **"How to fix" is actionable** — give a concrete alternative, not vague advice
-6. **N/A rules are still listed** — show the rule, mark N/A, and explain why
-7. **Section grades count only applicable items** — N/A items excluded from denominator
+2. **"What it is", "Why it matters", and "Recommendation" are copied word-for-word**
+   from the reference files; **"Source"** is the full citation
+3. **Observation precedes Compliance** and contains concrete evidence: verbatim quotes,
+   measured counts from the signals JSON, or screenshot descriptions. No evidence → the
+   verdict is UNVERIFIED, not FAIL
+4. **Every verdict names the criterion bullet that fired** and its confidence level
+5. **"How to fix" is actionable** — a concrete alternative plus its effort class
+6. **N/A and UNVERIFIED rules are still listed** — with why they don't apply / what
+   would verify them
+7. **The JSON block is mandatory** — it is what enables the next run's delta section
 8. **The horizontal rule `---` separates every rule** for clean readability
